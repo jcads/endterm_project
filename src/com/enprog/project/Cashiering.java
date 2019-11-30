@@ -8,7 +8,7 @@ public class Cashiering {
 	int quantity;
 	int itemCount = 0; 
 	int order;
-	double totalPrice, money;
+	double totalPrice, payment;
 	ArrayList<String> receiptItems = new ArrayList<String>();
 	ArrayList<Integer> receiptQuantityList = new ArrayList<Integer>();
 	ArrayList<Double> receiptPriceList = new ArrayList<Double>();
@@ -91,7 +91,7 @@ public class Cashiering {
 		} while(choice != 6);
 		
 		System.out.print("Enter payment: ");
-		money = in.nextDouble();
+		payment = in.nextDouble();
 		
 		this.receipt();
 		//System.out.println(items);
@@ -100,11 +100,14 @@ public class Cashiering {
 	
 	public void receipt() {
 		System.out.println("--------------------------------------------");
-		System.out.println("Receipt:");
+		System.out.println("R E C E I P T");
 		System.out.println("\tQuantity\tItem\t\tUnit Price\tAmount");
 		for (int k = 0; k < itemCount; k++) {
 			System.out.printf("\t%5d\t%15s \t %7.2f %12.2f\n", receiptQuantityList.get(k), receiptItems.get(k), receiptPriceList.get(k), receiptPriceList.get(k) * receiptQuantityList.get(k));
 		}
+		
+		System.out.printf("\nAmount due: %.2f", totalPrice);
+		System.out.printf("Change: %.2f", payment - totalPrice);
 	}
 	
 	public void addProduct() {
