@@ -67,20 +67,24 @@ public class Cashiering {
 			if (order == drugList.size() + 1)
 				break;
 			if (order == drugList.size() + 2) {
+				//clears the items on the receipt when users quits
+				receiptItems.clear();
+				receiptQuantityList.clear();
+				receiptPriceList.clear();
 				this.showMenu();
 				return;
 			}
-			System.out.println(drug[order - 1]);
+		
+			System.out.println(drugList.get(order - 1));
 			System.out.print("Quantity: ");
 			quantity = in.nextInt();
 			
 			//adds item, quantity, and price to the list for receipt
-			receiptItems.add(drug[order - 1]);
+			receiptItems.add(drugList.get(order - 1));
 			receiptQuantityList.add(quantity);
-			receiptPriceList.add(drugPrice[order - 1]);
+			receiptPriceList.add(drugPriceList.get(order - 1));
 			
-			
-			double tempPrice = drugPrice[order - 1] * quantity;
+			double tempPrice = drugPriceList.get(order - 1) * quantity;
 			totalPrice += tempPrice;
 					
 			itemCount++;
@@ -112,7 +116,7 @@ public class Cashiering {
 			System.out.print("Product name: ");
 			drug[drug.length - 1] = in.nextLine();
 			drugList.add(drug[drug.length - 1]);
-			System.out.println("Price: ");
+			System.out.print("Price: ");
 			drugPrice[drugPrice.length - 1] = in.nextDouble(); 
 			drugPriceList.add(drugPrice[drugPrice.length - 1]);
 			System.out.println();
