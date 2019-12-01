@@ -68,6 +68,7 @@ public class Cashiering {
 				break;
 			if (order == drugList.size() + 2) {
 				//clears the items on the receipt when users quits
+				System.out.println("------------------------------------------");
 				receiptItems.clear();
 				receiptQuantityList.clear();
 				receiptPriceList.clear();
@@ -90,6 +91,7 @@ public class Cashiering {
 			itemCount++;
 		} while(choice != 6);
 		
+		System.out.printf("Amount Due: %.2f\n", totalPrice);
 		System.out.print("Enter payment: ");
 		payment = in.nextDouble();
 		
@@ -101,12 +103,12 @@ public class Cashiering {
 	public void receipt() {
 		System.out.println("--------------------------------------------");
 		System.out.println("R E C E I P T");
-		System.out.println("\tQuantity\tItem\t\tUnit Price\tAmount");
+		System.out.println("\tItem\tQuantity\tUnit Price\tAmount");
 		for (int k = 0; k < itemCount; k++) {
-			System.out.printf("\t%5d\t%15s \t %7.2f %12.2f\n", receiptQuantityList.get(k), receiptItems.get(k), receiptPriceList.get(k), receiptPriceList.get(k) * receiptQuantityList.get(k));
+			System.out.printf("%15s\t%5d \t %12.2f %16.2f\n", receiptItems.get(k),receiptQuantityList.get(k), receiptPriceList.get(k), receiptPriceList.get(k) * receiptQuantityList.get(k));
 		}
 		
-		System.out.printf("\nAmount due: %.2f", totalPrice);
+		System.out.printf("\nAmount due: %.2f\n", totalPrice);
 		System.out.printf("Change: %.2f", payment - totalPrice);
 	}
 	
