@@ -60,12 +60,14 @@ public class Cashiering {
 		System.out.printf("[%d]\t QUIT\n", drugList.size() + 2);
 		
 		//order process
-		do {
+		while (true) {
 			System.out.println();
 			System.out.print("Enter order: ");
 			order = in.nextInt();
-			if (order == drugList.size() + 1)
+			if (order == drugList.size() + 1) {
+				System.out.println();
 				break;
+			}
 			if (order == drugList.size() + 2) {
 				//clears the items on the receipt when users quits
 				System.out.println("------------------------------------------");
@@ -89,7 +91,7 @@ public class Cashiering {
 			totalPrice += tempPrice;
 					
 			itemCount++;
-		} while(choice != 6);
+		}
 		
 		System.out.printf("Amount Due: %.2f\n", totalPrice);
 		System.out.print("Enter payment: ");
@@ -108,18 +110,21 @@ public class Cashiering {
 			System.out.printf("%15s\t%5d \t %12.2f %16.2f\n", receiptItems.get(k),receiptQuantityList.get(k), receiptPriceList.get(k), receiptPriceList.get(k) * receiptQuantityList.get(k));
 		}
 		
-		System.out.printf("\nAmount due: %.2f\n", totalPrice);
-		System.out.printf("Change: %.2f", payment - totalPrice);
+		System.out.printf("\nCash: Php %.2f\n", payment);
+		System.out.printf("Amount due: Php %.2f\n", totalPrice);
+		System.out.printf("Change: Php %.2f", payment - totalPrice);
 	}
 	
 	public void addProduct() {
-		System.out.print("How many products would you like to add? ");
+		System.out.print("\nHow many products would you like to add? ");
 		int counter = in.nextInt();
 		in.nextLine();
 		
 		for (int i = 0; i < counter; i++) {
-			System.out.print("Product name: ");
+			System.out.print("\nProduct name: ");
+			//modifies the last element in drug[]
 			drug[drug.length - 1] = in.nextLine();
+			//adds the entered element to the list
 			drugList.add(drug[drug.length - 1]);
 			System.out.print("Price: ");
 			drugPrice[drugPrice.length - 1] = in.nextDouble(); 
@@ -128,6 +133,7 @@ public class Cashiering {
 			in.nextLine();
 		}
 		
+		System.out.println("------------------------------------------");
 		this.showMenu();
 		return;
 	}
